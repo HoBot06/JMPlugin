@@ -1,0 +1,6 @@
+name: JMFish
+main: com.ho_bot.JMFish.JF_Main
+version: 1.0
+api-version: 1.20
+
+commands:
