@@ -1,0 +1,9 @@
+{
+  "id": "jmprison_proxy",
+  "name": "JMPrison_Proxy",
+  "version": "1.0.0",
+  "authors": [
+    "Ho_Bot"
+  ],
+  "main": "com.ho_bot.JMPrison.ProxyMain"
+}

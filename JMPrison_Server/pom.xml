@@ -8,6 +8,11 @@
         	<id>spigot-repo</id>
         	<url>https://repo.papermc.io/repository/maven-public/</url>
    		</repository>
+   		<repository>
+		    <id>nexus</id>
+		    <name>Lumine Releases</name>
+		    <url>https://mvn.lumine.io/repository/maven-public/</url>
+		</repository>
 	</repositories>
 	<dependencies>
 		<dependency>
@@ -16,5 +21,11 @@
 			<version>1.20.4-R0.1-SNAPSHOT</version>
 			<scope>provided</scope>
     	</dependency>
+    	<dependency>
+		    <groupId>io.lumine</groupId>
+		    <artifactId>Mythic-Dist</artifactId>
+		    <version>5.6.1</version>  
+		    <scope>provided</scope>
+		</dependency>
 	</dependencies>
 </project>
