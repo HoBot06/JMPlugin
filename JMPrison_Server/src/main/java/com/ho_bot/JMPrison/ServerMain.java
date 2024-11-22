@@ -90,6 +90,7 @@ public class ServerMain extends JavaPlugin implements PluginMessageListener{
 				String uuid = in.readUTF();
 				Player Packet_p = Bukkit.getPlayer(UUID.fromString(uuid));
 	        	String loc = in.readUTF();
+	        	
 				Packet_p.teleport(etc.locString(loc));
 				//log.info("출 4885 소");
 			}

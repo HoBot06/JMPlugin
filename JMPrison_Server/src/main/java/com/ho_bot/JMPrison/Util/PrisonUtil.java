@@ -43,11 +43,11 @@ public class PrisonUtil {
 		//player.sendMessage("감옥시간 추가됨");
 		if(!VarUtil.prison_players.contains(player.getUniqueId())) {
 			if(invClear) {
-				playerF.setInventory(player.getUniqueId());
 				new BukkitRunnable() {
 					
 					@Override
 					public void run() {
+						playerF.setInventory(player.getUniqueId());
 						player.getInventory().clear();
 						
 						ItemStack item = new ItemStack(Material.IRON_PICKAXE);
@@ -60,7 +60,7 @@ public class PrisonUtil {
 						player.getInventory().addItem(item);
 						
 					}
-				}.runTaskLater(ServerMain.inst, 20L);
+				}.runTaskLater(ServerMain.inst, 50L);
 			}
 			VarUtil.prison_players.add(player.getUniqueId());
 		}
