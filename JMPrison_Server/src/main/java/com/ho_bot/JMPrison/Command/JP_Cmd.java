@@ -53,7 +53,7 @@ public class JP_Cmd implements TabExecutor{
 				Player player = Bukkit.getPlayer(args[1]);
 				if(args.length>=3&& args[2]!=null) {
 					prisonU.sendPrison(player, Integer.parseInt(args[2])*60, true);
-					sender.sendMessage(Integer.parseInt(args[2])*60+"분 독방전송 완료");
+					sender.sendMessage(args[2]+"분 독방전송 완료");
 					return true;
 				}
 				sender.sendMessage("감옥 전송 완료");
