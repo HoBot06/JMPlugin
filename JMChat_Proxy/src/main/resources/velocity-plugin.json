@@ -1,0 +1,9 @@
+{
+  "id": "jmchat_proxy",
+  "name": "JMChat_Proxy",
+  "version": "1.0.0",
+  "authors": [
+    "Ho_Bot"
+  ],
+  "main": "com.ho_bot.main.JMChat_Proxy"
+}
