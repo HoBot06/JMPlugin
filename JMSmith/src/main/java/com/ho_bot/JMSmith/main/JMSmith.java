@@ -5,10 +5,15 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.ho_bot.JMSmith.cmd.JMS_Cmd;
 import com.ho_bot.JMSmith.event.JMS_Event;
+import com.ho_bot.JMSmith.file.ConfigFile;
+import com.ho_bot.JMSmith.file.ItemFile;
 
 public class JMSmith extends JavaPlugin {
 	
 	public static JMSmith inst;
+	
+	private ConfigFile configF = new ConfigFile();
+	private ItemFile itemF = new ItemFile();
 	
 	@Override
 	public void onEnable() {
@@ -22,6 +27,9 @@ public class JMSmith extends JavaPlugin {
         
         getConfig().options().copyDefaults(true);
         saveConfig();
+        
+        itemF.reloadItems();
+        configF.reloadConfig();
 	}
 	
 	@Override

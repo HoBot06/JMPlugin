@@ -40,6 +40,7 @@ public class GuiUtil {
 	}
 	
 	private List<Component> _lore(List<String> list) {
+		if(list == null) return null;
 		List<Component> lore = new ArrayList<>();
 		for(String s : list) {
 			lore.add(Component.text(s));
