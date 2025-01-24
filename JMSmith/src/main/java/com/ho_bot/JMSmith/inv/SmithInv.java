@@ -8,6 +8,7 @@ import java.util.Random;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
@@ -21,6 +22,7 @@ import com.ho_bot.JMSmith.smith.Ability;
 import com.ho_bot.JMSmith.smith.Chance;
 import com.ho_bot.JMSmith.util.GuiUtil;
 import com.ho_bot.JMSmith.util.ItemUtil;
+import com.ho_bot.JMSmith.util.SoundUtil;
 import com.ho_bot.JMSmith.util.VarUtil;
 
 import net.kyori.adventure.text.Component;
@@ -119,7 +121,9 @@ public class SmithInv {
 		if(event.getClickedInventory().getType() == InventoryType.PLAYER) {
 			if(event.getCurrentItem() != null) {
 				if(isCanUp(event.getCurrentItem())) {
+					SoundUtil.SoundP(player, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 0.2f, 1f);
 					OpenSmith((Player) event.getWhoClicked(), event.getCurrentItem());
+					return;
 				}
 			}
 		}
@@ -138,6 +142,7 @@ public class SmithInv {
 							mat_item.setAmount(amo);
 							if(!ItemUtil.hasItem(player, mat_item, amo)) {
 								player.sendMessage("재료 부족");
+								SoundUtil.SoundP(player, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 0.2f, 2f);
 								return;
 							}
 						}
@@ -170,6 +175,7 @@ public class SmithInv {
 							count++;
 							if(i==null) continue;
 							if(i.equals(item)) {
+								SoundUtil.SoundP(player, Sound.BLOCK_ANVIL_USE, 1f, 1f);
 								if(isWeapon(item)) {
 									ItemStack nextItem = nextItem(item, level+1, VarUtil.ab_weaponMap.get(level+1));
 									player.getInventory().setItem(count, nextItem);
@@ -194,15 +200,16 @@ public class SmithInv {
 							count++;
 							if(i==null) continue;
 							if(i.equals(item)) {
+								SoundUtil.SoundP(player, Sound.ENTITY_GHAST_WARN, 1f, 1f);
 								if(isWeapon(item)) {
-									ItemStack nextItem = nextItem(item, level+1, VarUtil.ab_weaponMap.get(level-1));
+									ItemStack nextItem = nextItem(item, level-1, VarUtil.ab_weaponMap.get(level-1));
 									player.getInventory().setItem(count, nextItem);
 									player.sendMessage("무기 하락");
 									OpenSmith(player);
 									return;
 								}
 								if(isArmor(item)) {
-									ItemStack nextItem = nextItem(item, level+1, VarUtil.ab_armorMap.get(level-1));
+									ItemStack nextItem = nextItem(item, level-1, VarUtil.ab_armorMap.get(level-1));
 									player.getInventory().setItem(count, nextItem);
 									player.sendMessage("갑옷 하락");
 									OpenSmith(player);
@@ -218,6 +225,7 @@ public class SmithInv {
 							count++;
 							if(i==null) continue;
 							if(i.equals(item)) {
+								SoundUtil.SoundP(player, Sound.BLOCK_ANVIL_DESTROY, 1f, 1f);
 								player.getInventory().setItem(count, null);
 								player.sendMessage("파괴");
 								OpenSmith(player);
@@ -226,6 +234,7 @@ public class SmithInv {
 						}
 					}
 					player.sendMessage("강화 실패");
+					SoundUtil.SoundP(player, Sound.ENTITY_ITEM_BREAK, 1f, 1f);
 				}
 			}
 		}
@@ -261,15 +270,17 @@ public class SmithInv {
 			lore.addAll(toplore);
 		}
 		
-		lore.add(topLore);
-		lore.add(ChatColor.WHITE+""+level+"강:");
-		if(ab.weapon_damage > 0) {
-			lore.add(ChatColor.WHITE+"- 공격력: " + ab.weapon_damage);
+		if(ab!=null) {
+			lore.add(topLore);
+			lore.add(ChatColor.WHITE+""+level+"강:");
+			if(ab.weapon_damage > 0) {
+				lore.add(ChatColor.WHITE+"- 공격력: " + ab.weapon_damage);
+			}
+			if(ab.armor_health > 0) {
+				lore.add(ChatColor.WHITE+"- 체력: " + ab.armor_health);
+			}
+			lore.add(bottomLore);
 		}
-		if(ab.armor_health > 0) {
-			lore.add(ChatColor.WHITE+"- 체력: " + ab.armor_health);
-		}
-		lore.add(bottomLore);
 		
 		if(bottomlore != null) {
 			lore.addAll(bottomlore);

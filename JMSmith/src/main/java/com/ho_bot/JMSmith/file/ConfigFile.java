@@ -29,7 +29,7 @@ public class ConfigFile {
 			VarUtil.armorMap.put(level, config().getStringList("방어구."+s+".재료"));
 			VarUtil.ab_armorMap.put(level, getAbility("방어구."+s+".능력치"));
 			int success = config().getInt("방어구."+s+".확률.성공");
-			int failed = config().getInt("방어구."+s+".확률.실패");
+			int failed = config().getInt("방어구."+s+".확률.하락");
 			int destroy = config().getInt("방어구."+s+".확률.파괴");
 			Chance ch = new Chance(success, failed, destroy);
 			VarUtil.chance_armorMap.put(level, ch);
@@ -39,7 +39,7 @@ public class ConfigFile {
 			VarUtil.weaponMap.put(level, config().getStringList("무기."+s+".재료"));
 			VarUtil.ab_weaponMap.put(level, getAbility("무기."+s+".능력치"));
 			int success = config().getInt("무기."+s+".확률.성공");
-			int failed = config().getInt("무기."+s+".확률.실패");
+			int failed = config().getInt("무기."+s+".확률.하락");
 			int destroy = config().getInt("무기."+s+".확률.파괴");
 			Chance ch = new Chance(success, failed, destroy);
 			VarUtil.chance_weaponMap.put(level, ch);
